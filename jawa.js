@@ -24,14 +24,14 @@ function click() {
     img.src = 'assets/'+ randomElement;
     img.setAttribute('id', 'gambar')
     container.appendChild(img);
-    const audioIn = new Audio('assets/in.mp3');
-    const audioOut = new Audio('assets/out.mp3');
-    audioIn.play();
+    // const audioIn = new Audio('assets/in.mp3');
+    // const audioOut = new Audio('assets/out.mp3');
+    // audioIn.play();
     storeCounter();
     measureCPS();
     setTimeout(() => {
         container.removeChild(container.children[0]);
-        audioOut.play();
+        // audioOut.play();
     }, 2000);
 }
 
