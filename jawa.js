@@ -1,4 +1,3 @@
-let counter = 0
 let container = document.getElementById('imgContainer');
 const counterText = document.getElementById('counterText');
 restoreCounter();
@@ -58,6 +57,7 @@ function measureCPS() {
     }
     return clicks++;
 }
+
 function updateCPS() {
   if (measuring) {
     setTimeout(() => {
