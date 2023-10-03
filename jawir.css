@@ -30,35 +30,39 @@ body {
 }
 
 #gambar {
-    top: 65%;
-    position: fixed;
-    width: 10vw;
-    height: 10vw;
+    width: 25vw;
+    height: 25vw;
     animation: slide 2s ease-in-out forwards;
     border-radius: 16px;
     transform: scale(2);
+    top: 65%;
+    position: fixed;
 }
 
 @keyframes slide {
     0% {
-        margin-left: 110vw;
+        margin-left: 125vw;
     }
     100% {
-        margin-left: -20vw;
+        margin-left: -40vw;
     }
 }
 
-@media only screen and (orientation: portrait) {
+
+@media only screen and (orientation: landscape) {
     #gambar {
-        width: 25vw;
-        height: 25vw;
+
+        width: 10vw;
+        height: 10vw;
+
     }
+
     @keyframes slide {
         0% {
-            margin-left: 125vw;
+            margin-left: 110vw;
         }
         100% {
-            margin-left: -25vw;
+            margin-left: -15vw;
         }
     }
 }
