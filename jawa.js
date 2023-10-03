@@ -1,3 +1,4 @@
+let counter = 0
 let container = document.getElementById('imgContainer');
 const counterText = document.getElementById('counterText');
 restoreCounter();
@@ -9,7 +10,7 @@ function storeCounter() {
 
 function restoreCounter() {
     let counterString = localStorage.getItem('counter');
-    counter = JSON.parse(counterString) || [];
+    counter = JSON.parse(counterString) || 0;
     counterText.textContent = counter;
 }
 const jawir = ['jawir1.webp', 'jawir2.webp', 'jawir3.webp', 'jawir4.webp'];
