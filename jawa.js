@@ -15,10 +15,8 @@ function restoreCounter() {
 const jawir = ['jawir1.webp', 'jawir2.webp', 'jawir3.webp', 'jawir4.webp'];
 const audioIn = new Audio('./assets/discordIn.mp3');
 const audioOut = new Audio('./assets/discordOut.mp3');
-let clicked = false;
 document.addEventListener('click', click);
 function click() {
-    clicked = true;
     let randomElement = jawir[Math.floor(Math.random() * jawir.length)];
     counter++;
     counterText.textContent = counter;
@@ -38,10 +36,7 @@ function click() {
 
     setTimeout(() => {
         container.removeChild(container.children[0]);
-        clicked = false;
     }, 2000);
-
-
 }
 
 document.addEventListener('dragstart', event => {

@@ -48,13 +48,10 @@ body {
     }
 }
 
-
 @media only screen and (orientation: landscape) {
     #gambar {
-
         width: 10vw;
         height: 10vw;
-
     }
 
     @keyframes slide {
