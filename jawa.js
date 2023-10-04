@@ -13,25 +13,35 @@ function restoreCounter() {
     counterText.textContent = counter;
 }
 const jawir = ['jawir1.webp', 'jawir2.webp', 'jawir3.webp', 'jawir4.webp'];
-
+const audioIn = new Audio('./assets/discordIn.mp3');
+const audioOut = new Audio('./assets/discordOut.mp3');
+let clicked = false;
 document.addEventListener('click', click);
 function click() {
+    clicked = true;
     let randomElement = jawir[Math.floor(Math.random() * jawir.length)];
     counter++;
     counterText.textContent = counter;
     let img = document.createElement('img');
-    img.src = 'assets/'+ randomElement;
+    img.src = './assets/'+ randomElement;
     img.setAttribute('id', 'gambar')
     container.appendChild(img);
-    // const audioIn = new Audio('assets/in.mp3');
-    // const audioOut = new Audio('assets/out.mp3');
-    // audioIn.play();
     storeCounter();
     measureCPS();
+    audioIn.currentTime = 0;
+    audioIn.play();
+    audioIn.onended = () => {
+      setTimeout(() => {
+        audioOut.play();
+      }, 1000);
+    }
+
     setTimeout(() => {
         container.removeChild(container.children[0]);
-        // audioOut.play();
+        clicked = false;
     }, 2000);
+
+
 }
 
 document.addEventListener('dragstart', event => {
