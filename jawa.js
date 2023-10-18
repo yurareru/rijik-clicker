@@ -13,8 +13,7 @@ function restoreCounter() {
     counterText.textContent = counter;
 }
 const jawir = ['jawir1.webp', 'jawir2.webp', 'jawir3.webp', 'jawir4.webp'];
-const audioIn = new Audio('./assets/discordIn.mp3');
-const audioOut = new Audio('./assets/discordOut.mp3');
+const audioIn = new Audio('./assets/ORANGDONGO.mp3');
 document.addEventListener('click', click);
 function click() {
     let randomElement = jawir[Math.floor(Math.random() * jawir.length)];
@@ -28,12 +27,6 @@ function click() {
     measureCPS();
     audioIn.currentTime = 0;
     audioIn.play();
-    audioIn.onended = () => {
-      setTimeout(() => {
-        audioOut.play();
-      }, 1000);
-    }
-
     setTimeout(() => {
         container.removeChild(container.children[0]);
     }, 2000);
