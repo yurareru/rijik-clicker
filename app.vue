@@ -3,9 +3,6 @@ const storage = useLocalStorage<number>('counter', 0)
 const counter = ref(storage.value)
 const click = ref(0)
 
-const { pressed } = useMousePressed()
-const lastClick = ref(Date.now())
-
 const jawirArr = ref<string[]>([])
 const jawirImg = [
   '/jawir1.webp',
@@ -17,25 +14,47 @@ const jawirImg = [
   '/jawir7.webp',
   '/jawir8.webp',
   '/jawir9.webp',
+  '/jawir10.webp',
 ]
+
+const clickComp = ref(0)
+const isMeasuring = ref(false)
+function measureCPS() {
+  if (!isMeasuring.value) {
+    clickComp.value = 0
+    isMeasuring.value = true
+    click.value = 0
+    updateCPS()
+  }
+  clickComp.value++
+}
+
+function updateCPS() {
+  clickComp.value++
+  if (isMeasuring.value) {
+    setTimeout(() => {
+      click.value = clickComp.value
+      updateCPS()
+      clickComp.value = 0
+    }, 1000)
+  }
+}
 
 import sfx from '~/assets/click.mp3'
 const { play } = useSound(sfx, { interrupt: true })
-watchThrottled(pressed, () => {
-  if (pressed.value) {
-    play()
-    jawirArr.value.push(jawirImg[Math.floor(Math.random() * jawirImg.length)])
-    counter.value++
-    storage.value = counter.value
-    const now = Date.now()
-    const diff = now - lastClick.value
-    lastClick.value = now
-    click.value = Math.round(1000 / diff)
-    setTimeout(() => {
-      jawirArr.value.shift()
-    }, 2000)
-  }
-})
+const updateClick = (e: MouseEvent) => {
+  e.preventDefault()
+  play()
+  jawirArr.value.push(jawirImg[Math.floor(Math.random() * jawirImg.length)])
+  counter.value++
+  storage.value = counter.value
+  measureCPS()
+  setTimeout(() => {
+    jawirArr.value.shift()
+  }, 2000)
+}
+useEventListener(document, 'click', (e) => updateClick(e))
+useEventListener(document, 'contextmenu', (e) => updateClick(e))
 </script>
 
 <template>
